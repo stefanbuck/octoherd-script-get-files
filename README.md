@@ -1,5 +1,3 @@
-# 🚧 WORK IN PROGRESS. See [#1](https://github.com/stefanbuck/octoherd-script-download-files/pull/1) | [Preview](https://github.com/stefanbuck/octoherd-script-download-files/tree/initial-version)
-
 # octoherd-script-download-files
 
 > An Octoherd script to download files from repositories
