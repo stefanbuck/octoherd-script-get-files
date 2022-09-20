@@ -21,7 +21,6 @@ Pass all options as CLI flags to avoid user prompts
 npx octoherd-script-download-files \
   -T ghp_0123456789abcdefghjklmnopqrstuvwxyzA \
   -R "stefanbuck/*" \
-  --ignoreArchived undefined \
   --source README.md \
   --target ./out
 ```
@@ -30,9 +29,9 @@ npx octoherd-script-download-files \
 
 | option                                        | type             | description                                                                                                                                                                                                                                 |
 | --------------------------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--ignore-archived` or `--no-ignore-archived` | boolean          | Ignores archive repositories                                                                                                                                                                                                                |
 | `--source`                                    | string           | **Required.** Path to the destination directory                                                                                                                                                                                             |
 | `--target`                                    | string           | **Required.** File path to download. Note: Directories are not supported yet                                                                                                                                                                |
+| `--ignore-archived` or `--no-ignore-archived` | boolean          | Default `true`. Ignores archive repositories                                                                                                                                                                                                                |
 | `--octoherd-token`, `-T`                      | string           | A personal access token ([create](https://github.com/settings/tokens/new?scopes=repo)). Script will create one if option is not set                                                                                                         |
 | `--octoherd-repos`, `-R`                      | array of strings | One or multiple space-separated repositories in the form of `repo-owner/repo-name`. `repo-owner/*` will find all repositories for one owner. `*` will find all repositories the user has access to. Will prompt for repositories if not set |
 | `--octoherd-bypass-confirms`                  | boolean          | Bypass prompts to confirm mutating requests                                                                                                                                                                                                 |
