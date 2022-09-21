@@ -1,16 +1,16 @@
-# octoherd-script-download-files
+# octoherd-script-get-files
 
 > An Octoherd script to download files from repositories
 
-[![@latest](https://img.shields.io/npm/v/octoherd-script-download-files.svg)](https://www.npmjs.com/package/octoherd-script-download-files)
-[![Build Status](https://github.com/stefanbuck/octoherd-script-download-files/workflows/Test/badge.svg)](https://github.com/stefanbuck/octoherd-script-download-files/actions?query=workflow%3ATest+branch%3Amain)
+[![@latest](https://img.shields.io/npm/v/octoherd-script-get-files.svg)](https://www.npmjs.com/package/octoherd-script-get-files)
+[![Build Status](https://github.com/stefanbuck/octoherd-script-get-files/workflows/Test/badge.svg)](https://github.com/stefanbuck/octoherd-script-get-files/actions?query=workflow%3ATest+branch%3Amain)
 
 ## Usage
 
 Minimal usage
 
 ```js
-npx octoherd-script-download-files \
+npx octoherd-script-get-files \
   --source README.md \
   --target ./out
 ```
@@ -18,7 +18,7 @@ npx octoherd-script-download-files \
 Pass all options as CLI flags to avoid user prompts
 
 ```js
-npx octoherd-script-download-files \
+npx octoherd-script-get-files \
   -T ghp_0123456789abcdefghjklmnopqrstuvwxyzA \
   -R "stefanbuck/*" \
   --source README.md \

@@ -1,17 +1,17 @@
 {
-  "name": "octoherd-script-download-files",
+  "name": "octoherd-script-get-files",
   "version": "0.0.0-development",
   "type": "module",
   "exports": "./script.js",
   "bin": {
-    "octoherd-script-download-files": "./cli.js"
+    "octoherd-script-get-files": "./cli.js"
   },
   "description": "An Octoherd script to download files from repositories",
   "scripts": {
     "start": "node cli.js",
     "test": "node script.js"
   },
-  "repository": "https://github.com/stefanbuck/octoherd-script-download-files",
+  "repository": "https://github.com/stefanbuck/octoherd-script-get-files",
   "keywords": [
     "octoherd-script"
   ],

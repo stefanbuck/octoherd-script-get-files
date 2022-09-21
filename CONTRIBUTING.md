@@ -3,7 +3,7 @@
 Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
 By participating in this project you agree to abide by its terms.
 
-We appreciate you taking the time to contribute to `octoherd-script-download-files`. Especially as a new contributor, you have a valuable perspective that we lost a long time ago: you will find things confusing and run into problems that no longer occur to us. Please share them with us, so we can make the experience for future contributors the best it could be.
+We appreciate you taking the time to contribute to `octoherd-script-get-files`. Especially as a new contributor, you have a valuable perspective that we lost a long time ago: you will find things confusing and run into problems that no longer occur to us. Please share them with us, so we can make the experience for future contributors the best it could be.
 
 Thank you 💖
 
@@ -11,7 +11,7 @@ Thank you 💖
 
 Before you create a new Issue:
 
-1. Please make sure there is no [open issue](https://github.com/stefanbuck/octoherd-script-download-files/issues?utf8=%E2%9C%93&q=is%3Aissue) yet.
+1. Please make sure there is no [open issue](https://github.com/stefanbuck/octoherd-script-get-files/issues?utf8=%E2%9C%93&q=is%3Aissue) yet.
 2. If it is a bug report, include the steps to reproduce the issue
 3. If it is a feature request, please share the motivation for the new feature, what alternatives you tried, and how you would implement it.
 
@@ -22,8 +22,8 @@ First, fork the repository.
 Setup the repository locally. Replace `<your account name>` with the name of the account you forked to.
 
 ```shell
-git clone https://github.com/<your account name>/octoherd-script-download-files.git
-cd octoherd-script-download-files
+git clone https://github.com/<your account name>/octoherd-script-get-files.git
+cd octoherd-script-get-files
 npm install
 ```
 
@@ -37,7 +37,7 @@ npm test
 
 - Create a new branch locally.
 - Make your changes in that branch and push them to your fork
-- Submit a pull request from your topic branch to the main branch on the `stefanbuck/octoherd-script-download-files` repository.
+- Submit a pull request from your topic branch to the main branch on the `stefanbuck/octoherd-script-get-files` repository.
 - Be sure to tag any issues your pull request is taking care of / contributing to. Adding "Closes #123" to a pull request description will automatically close the issue once the pull request is merged in.
 
 ## Maintainers only
