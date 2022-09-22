@@ -1,8 +1,7 @@
 // @ts-check
 
-import os from 'os'
-import fs from 'fs'
-import path from 'path'
+import isGlob from 'is-glob';
+import { getListOfFilesToDownload, downloadFile } from './helper.js';
 
 /** @type boolean */
 let hasRepoScope;
@@ -15,9 +14,9 @@ let hasRepoScope;
  * @param {object} options
  * @param {boolean} [options.ignoreArchived] Ignores archive repositories
  * @param {string} options.source Path to the destination directory
- * @param {string} options.target File path to download. Note: Directories are not supported yet
+ * @param {string} options.output File path to download. Note: Directories are not supported yet
  */
-export async function script(octokit, repository, { source, target = process.cwd(), ignoreArchived = true }) {
+export async function script(octokit, repository, { source, output = process.cwd(), ignoreArchived = true }) {
   if (!hasRepoScope) {
     const { headers } = await octokit.request("HEAD /");
     const scopes = new Set(headers["x-oauth-scopes"].split(", "));
@@ -40,40 +39,26 @@ export async function script(octokit, repository, { source, target = process.cwd
     process.exit(1);
   }
 
-  if (!target) {
-    octokit.log.error('Please specify a source file to download with --source=README.md --target=./out')
+  if (!output) {
+    octokit.log.error('Please specify a source file to download with --source=README.md --output=./out')
     process.exit(1);
   }
 
-  await octokit.request(
-    `GET /repos/{owner}/{repo}/contents/${source}`,
-    {
-      owner: repository.owner.login,
-      repo: repository.name,
-      headers: {
-        Accept: "application/vnd.github.v3.raw"
-      }
-    }
-  ).then((res) => {
-    octokit.log.info(`Download ${source}`);
+  let filesToDownload = [source]
 
-    // Expand the ~ character to a users home directory
-    const newTarget = target.replace("~", os.homedir)
+  if (isGlob(source)) {
+    filesToDownload = await getListOfFilesToDownload(octokit, repository, source);
+  }
 
-    const targetFile = path.join(newTarget, repository.owner.login, repository.name, source);
-    const targetPath = path.join(newTarget, repository.owner.login, repository.name, path.dirname(source));
+  if (filesToDownload.length > 1) {
+    octokit.log.debug(`Start downloading ${filesToDownload.length} files`);
+  }
 
-    if (!fs.existsSync(targetPath)) {
-      fs.mkdirSync(targetPath, { recursive: true });
-    }
+  if (filesToDownload.length === 0) {
+    octokit.log.warn(`No matches found for ${source}`);
+  }
 
-    fs.writeFileSync(targetFile, res.data)
-  }).catch(error => {
-    if (error.status === 404) {
-      octokit.log.warn(`File ${source} not found`);
-      return false;
-    }
-
-    throw error;
-  })
+  for (const item of filesToDownload) {
+    await downloadFile(octokit, repository, output, item)
+  }
 }

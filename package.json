@@ -18,7 +18,9 @@
   "author": "Stefan Buck (stefanbuck.com)",
   "license": "ISC",
   "dependencies": {
-    "@octoherd/cli": "^3.4.11"
+    "@octoherd/cli": "^3.4.11",
+    "is-glob": "^4.0.3",
+    "minimatch": "^5.1.0"
   },
   "release": {
     "branches": [
