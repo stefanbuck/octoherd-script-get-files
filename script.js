@@ -13,10 +13,13 @@ let hasRepoScope;
  * @param {import('@octoherd/cli').Repository} repository
  * @param {object} options
  * @param {boolean} [options.ignoreArchived] Ignores archive repositories
+ * @param {boolean} [options.ignoreForks] Ignores forks repositories
+ * @param {boolean} [options.ignorePublic] Ignores public repositories
+ * @param {boolean} [options.ignorePrivate] Ignores private repositories
  * @param {string} options.source Path to the destination directory
  * @param {string} options.output File path to download. Note: Directories are not supported yet
  */
-export async function script(octokit, repository, { source, output = process.cwd(), ignoreArchived = true }) {
+export async function script(octokit, repository, { source, output = process.cwd(), ignoreArchived = true, ignoreForks = true, ignorePublic = false, ignorePrivate = false }) {
   if (!hasRepoScope) {
     const { headers } = await octokit.request("HEAD /");
     const scopes = new Set(headers["x-oauth-scopes"].split(", "));
@@ -31,6 +34,21 @@ export async function script(octokit, repository, { source, output = process.cwd
 
   if (ignoreArchived && repository.archived) {
     octokit.log.warn(`IGNORE repository is archived`);
+    return;
+  }
+
+  if (ignoreForks && repository.fork) {
+    octokit.log.warn(`IGNORE repository is a fork`);
+    return;
+  }
+
+  if (ignorePublic && !repository.private) {
+    octokit.log.warn(`IGNORE repository is public`);
+    return;
+  }
+
+  if (ignorePrivate && repository.private) {
+    octokit.log.warn(`IGNORE repository is private`);
     return;
   }
 
